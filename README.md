@@ -122,10 +122,10 @@ $params = array(
 	'currency' => 'BRL',
 	'shippingType'  =>  3, //Tipo de frete 1 – PAC, 2 – SEDEX, 3 - Desconhecido
 	'shippingCost'  =>  'Valor do frete', // Decimal, com duas casas decimais separadas por ponto (ex 1234.56) maior que 0.00 e menor ou igual a 9999999.00;
-	'itemId' =  'ID ou SKU do seu produto',
-        'itemDescription' =  'Descrição do produto',
-        'itemAmount' =  'Preço do produto', //Decimal com duas casas decimais separadas por ponto (ex1234.56) maior que 0.00 e menor ou igual a 9999999.00;
-        'itemQuantity' =  'Qty do produto' // Um número inteiro maior ou igual a 1 e menor ou igual a 999
+	'itemId1' =>  'ID ou SKU do seu produto',
+        'itemDescription1' =>  'Descrição do produto',
+        'itemAmount1' =>  'Preço do produto', //Decimal com duas casas decimais separadas por ponto (ex1234.56) maior que 0.00 e menor ou igual a 9999999.00;
+        'itemQuantity1' =>  'Qty do produto' // Um número inteiro maior ou igual a 1 e menor ou igual a 999
 );
 
 //Requisitando a API.
