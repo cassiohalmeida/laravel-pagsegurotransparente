@@ -9,6 +9,7 @@
 namespace Cassioalmeida\Pagsegurotransparente;
 
 use DOMDocument;
+use Exception;
 
 class XmlParser {
 
