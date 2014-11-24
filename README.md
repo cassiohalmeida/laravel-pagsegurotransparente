@@ -122,10 +122,10 @@ $params = array(
 	'currency' => 'BRL',
 	'shippingType'  =>  3, //Tipo de frete 1 – PAC, 2 – SEDEX, 3 - Desconhecido
 	'shippingCost'  =>  'Valor do frete', // Decimal, com duas casas decimais separadas por ponto (ex 1234.56) maior que 0.00 e menor ou igual a 9999999.00;
-	$params['itemId'] =  'ID ou SKU do seu produto',
-        $params['itemDescription'] =  'Descrição do produto',
-        $params['itemAmount'] =  'Preço do produto', //Decimal com duas casas decimais separadas por ponto (ex1234.56) maior que 0.00 e menor ou igual a 9999999.00;
-        $params['itemQuantity'] =  'Qty do produto' // Um número inteiro maior ou igual a 1 e menor ou igual a 999
+	'itemId' =  'ID ou SKU do seu produto',
+        'itemDescription' =  'Descrição do produto',
+        'itemAmount' =  'Preço do produto', //Decimal com duas casas decimais separadas por ponto (ex1234.56) maior que 0.00 e menor ou igual a 9999999.00;
+        'itemQuantity' =  'Qty do produto' // Um número inteiro maior ou igual a 1 e menor ou igual a 999
 );
 
 //Requisitando a API.
@@ -139,39 +139,39 @@ $pagSeguroReturn = PagSeguro::doPayment($params);
 ```php
 $params = array(
 	'paymentMethod' =>  'creditCard',
-        'currency'  =>  "BRL",
-        'senderName'    =>  utf8_decode(\Auth::getUser()->getName()),
-        'senderCPF'     =>  \Auth::getUser()->getCleanCpf(),
-        'senderAreaCode'    =>  $this->getPhoneDdd("(",")", \Session::get("checkout_billing_address")["phone_1"]),
-        'senderPhone'   =>  $this->getCleanedPhone(\Session::get("checkout_billing_address")["phone_1"]),
-        'senderEmail'   =>  \Auth::getUser()->getEmail(),
-        'senderHash'    =>  \Input::get('sender_hash'),
-        'shippingAddressPostalCode' => \Session::get("checkout_shipping_address")["zip_code"],
-        'shippingAddressStreet' => utf8_decode(\Session::get("checkout_shipping_address")["address"]),
-        'shippingAddressNumber' => \Session::get("checkout_shipping_address")["number"],
-        'shippingAddressComplement' => utf8_decode(\Session::get("checkout_shipping_address")["complement"]),
-        'shippingAddressDistrict' => utf8_decode(\Session::get("checkout_shipping_address")["district"]),
-        'shippingAddressCity' => utf8_decode(\Session::get("checkout_shipping_address")["city"]),
-        'shippingAddressState' => \Session::get("checkout_shipping_address")["address_state_code"],
-        "shippingAddressCountry" => "BRA",
-        'shippingType'  =>  3,
-        'shippingCost'  =>  \Session::get('delivery_rate'),
-        'creditCardToken'   =>  \Input::get('credit_card_token'),
-        'installmentQuantity'   =>  $this->getInstallmentQuantity(\Input::get('credit_card_installments')),
-        'installmentValue'  =>      $this->getInstallmentValue(\Input::get('credit_card_installments')),
-        'noInterestInstallmentQuantity' => 5,//Valor setado no metodo getInstallments (checkout.js) se alterar aqui tem que alterar lá e vice versa;
-        'creditCardHolderName'  => \Input::get('credit_card_holder_name'),
-        'creditCardHolderCPF'   =>  \Input::get('credit_card_holder_cpf'),
-        'creditCardHolderBirthDate' =>  \Input::get('credit_card_holder_birthday'),
-        'creditCardHolderAreaCode'  =>  \Input::get('credit_card_phone_ddd'),
-        'creditCardHolderPhone'     =>  \Input::get('credit_card_phone_number'),
-        'billingAddressStreet'  =>  utf8_decode(\Session::get("checkout_billing_address")["address"]),
-        'billingAddressNumber'  =>  \Session::get("checkout_billing_address")["number"],
-        'billingAddressComplement' => utf8_decode(\Session::get("checkout_billing_address")["complement"]),
-        'billingAddressDistrict'    =>  utf8_decode(\Session::get("checkout_billing_address")["district"]),
-        'billingAddressPostalCode'  =>  \Session::get("checkout_billing_address")["zip_code"],
-        'billingAddressCity'    =>  utf8_decode(\Session::get("checkout_billing_address")["city"]),
-        'billingAddressState'   =>  \Session::get("checkout_billing_address")["address_state_code"],
+        'currency'  =>  'BRL', //Padrão, já que o PagSeguro só aceita REAL
+        'senderName'    =>  'nome do cliente',
+        'senderCPF'     =>  'CPF do cliente sem traço ou ponto',
+        'senderAreaCode'    =>  'DDD do telefone do cliente',
+        'senderPhone'   =>  'Telefone do Cliente',
+        'senderEmail'   =>  'email do cliente',
+        'senderHash'    =>  'sender hash', // Para mais detalhes de como obter, consulte o arquivo de integração do UOL
+        'shippingAddressPostalCode' => 'CEP do endereço de entrega',
+        'shippingAddressStreet' => 'Rua do endereço de entrega',
+        'shippingAddressNumber' => 'Número do endereço de entrega',
+        'shippingAddressComplement' => 'Complemento do endereço de entrega',
+        'shippingAddressDistrict' => 'Bairro do endereço de entrega',
+        'shippingAddressCity' => 'Cidade do endereço de entrega',
+        'shippingAddressState' => 'Estado do endereço de entrega', // Ex: SP
+        "shippingAddressCountry" => "BRA", //Padrão
+        'shippingType'  =>  3, //Tipo de frete 1 – PAC, 2 – SEDEX, 3 - Desconhecido
+        'shippingCost'  =>  'Valor do frete',
+        'creditCardToken'   =>  'Token do cartão de crédito', //Consulte e página 10 do manual de integração;
+        'installmentQuantity'   =>  'Nº de parcelas',
+        'installmentValue'  =>      'Valor de cada parcela',
+        'noInterestInstallmentQuantity' => 5,//Valor setado no metodo getInstallments se alterar aqui tem que alterar lá e vice versa. Consultar a página 11 do manual para detalhes.
+        'creditCardHolderName'  => 'Nome do cartão de crédito',
+        'creditCardHolderCPF'   =>  'CPF do titular do cartão', //Sem pontos ou traços;
+        'creditCardHolderBirthDate' =>  'Data de nascimento do titular do cartão', //No formato 99/99/9999
+        'creditCardHolderAreaCode'  =>  'DDD do telefone do titular',
+        'creditCardHolderPhone'     =>  'Telefone do titular',
+        'billingAddressStreet'  =>  'Rua do endereço de COBRANÇA',
+        'billingAddressNumber'  =>  'Número do endereço de COBRANÇA',
+        'billingAddressComplement' => 'Complemento do endereço de COBRANÇA',
+        'billingAddressDistrict'    =>  'Bairro do endereço de COBRANÇA',
+        'billingAddressPostalCode'  =>  'CEP do endereço de COBRANÇA',
+        'billingAddressCity'    =>  'Cidade do endereço de COBRANÇA',
+        'billingAddressState'   =>  'Estado do endereço de COBRANÇA', // Ex: SP
         'billingAddressCountry' =>  'BRA'
 );
 
@@ -182,5 +182,27 @@ $pagSeguroReturn = PagSeguro::doPayment($params);
 ```
 
 
-Caso exista algum erro nas informações, a variável `$pagSeguroReturn` terá um indice `errors`. Verifique seu retorno para descobrir qual o erro.
-Em caso de SUCESSO na requisição a variável `$pagSeguroReturn` terá um indice `transaction` com seus respectivos dados como `código de transação`, `paymentLink` (no caso de boleto) entre outros.
+Caso exista algum erro nas informações, a variável `$pagSeguroReturn` terá um indice `errors`. Verifique seu retorno para descobrir o que houve de errado.
+Em caso de SUCESSO na requisição a variável `$pagSeguroReturn` terá um indice `transaction` com seus respectivos dados como `código de transação`, `paymentLink` (no caso de boleto) entre outros. Consulte a página 16 do manual para todos os dados retornados.
+
+## RECEBENDO UMA NOTIFICAÇÃO SOBRE ALTERAÇÃO EM TRANSAÇÕES
+
+Como você já deve saber, o PagSeguro irá enviar para uma URL pré-definida as informações sobre alterações de Status para suas transações (Essa URL você defini no painel da sua conta PagSeguro).
+
+A ordem de chamada é a seguinte.
+O PagSeguro te envia uma variável chamada de `notificationCode`.
+Com esse código, você vai realizar a chamada na API, veja:
+
+```php
+$pagSeguroReturn = PagSeguro::paymentOrderConsult($notificationCode);
+$transaction = $pagSeguroReturn['transaction'];
+```
+Observe que a variável `notificationCode` é passada para o método `paymentOrderConsult`. Com isso, o indice `transaction` irá retornar os dados da compra de acordo com o PagSeguro, se foir paga, cancelada e etc. Abaixo uma tabela com os códigos e o seu significado
+
+1	Aguardando pagamento: o comprador iniciou a transação, mas até o momento o PagSeguro não recebeu nenhuma informação sobre o pagamento.
+2	Em análise: o comprador optou por pagar com um cartão de crédito e o PagSeguro está analisando o risco da transação.
+3	Paga: a transação foi paga pelo comprador e o PagSeguro já recebeu uma confirmação da instituição financeira responsável pelo processamento.
+4	Disponível: a transação foi paga e chegou ao final de seu prazo de liberação sem ter sido retornada e sem que haja nenhuma disputa aberta.
+5	Em disputa: o comprador, dentro do prazo de liberação da transação, abriu uma disputa.
+6	Devolvida: o valor da transação foi devolvido para o comprador.
+7	Cancelada: a transação foi cancelada sem ter sido finalizada.
