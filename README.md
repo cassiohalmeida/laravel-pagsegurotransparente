@@ -172,7 +172,11 @@ $params = array(
         'billingAddressPostalCode'  =>  'CEP do endereço de COBRANÇA',
         'billingAddressCity'    =>  'Cidade do endereço de COBRANÇA',
         'billingAddressState'   =>  'Estado do endereço de COBRANÇA', // Ex: SP
-        'billingAddressCountry' =>  'BRA'
+        'billingAddressCountry' =>  'BRA',
+        'itemId1' =>  'ID ou SKU do seu produto',
+        'itemDescription1' =>  'Descrição do produto',
+        'itemAmount1' =>  'Preço do produto', //Decimal com duas casas decimais separadas por ponto (ex1234.56) maior que 0.00 e menor ou igual a 9999999.00;
+        'itemQuantity1' =>  'Qty do produto' // Um número inteiro maior ou igual a 1 e menor ou igual a 999
 );
 
 //Requisitando a API.
@@ -181,13 +185,30 @@ $pagSeguroReturn = PagSeguro::doPayment($params);
 
 ```
 
+Repare que, tanto para `boleto` quanto para `cartão de crédito` você deve adicionar os itens seguidos pelo numero. No exemplo, temos apenas um produto para ser enviado, portanto temos os indices `itemId1`, `itemDescription1`, `itemAmount1`, `itemQuantity1`, caso haja mais de um, você deve acrescentar o número na frente dos indices, por exemplo:
+
+```php
+$params = array(
+
+        'itemId2' =>  'ID ou SKU do seu produto',
+        'itemDescription2' =>  'Descrição do produto',
+        'itemAmount2' =>  'Preço do produto', //Decimal com duas casas decimais separadas por ponto (ex1234.56) maior que 0.00 e menor ou igual a 9999999.00;
+        'itemQuantity2' =>  'Qty do produto', // Um número inteiro maior ou igual a 1 e menor ou igual a 999
+        
+        'itemId3' =>  'ID ou SKU do seu produto',
+        'itemDescription3' =>  'Descrição do produto',
+        'itemAmount3' =>  'Preço do produto', //Decimal com duas casas decimais separadas por ponto (ex1234.56) maior que 0.00 e menor ou igual a 9999999.00;
+        'itemQuantity3' =>  'Qty do produto' // Um número inteiro maior ou igual a 1 e menor ou igual a 999
+);
+
+```
 
 Caso exista algum erro nas informações, a variável `$pagSeguroReturn` terá um indice `errors`. Verifique seu retorno para descobrir o que houve de errado.
 Em caso de SUCESSO na requisição a variável `$pagSeguroReturn` terá um indice `transaction` com seus respectivos dados como `código de transação`, `paymentLink` (no caso de boleto) entre outros. Consulte a página 16 do manual para todos os dados retornados.
 
 ## RECEBENDO UMA NOTIFICAÇÃO SOBRE ALTERAÇÃO EM TRANSAÇÕES
 
-Como você já deve saber, o PagSeguro irá enviar para uma URL pré-definida as informações sobre alterações de Status para suas transações (Essa URL você defini no painel da sua conta PagSeguro).
+Como você já deve saber, o PagSeguro irá enviar para uma URL pré-definida as informações sobre alterações de Status para suas transações (Essa URL você define no painel da sua conta PagSeguro).
 
 A ordem de chamada é a seguinte.
 O PagSeguro te envia uma variável chamada de `notificationCode`.
