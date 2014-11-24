@@ -123,7 +123,7 @@ $params = array(
 	'shippingType'  =>  3, //Tipo de frete 1 – PAC, 2 – SEDEX, 3 - Desconhecido
 	'shippingCost'  =>  'Valor do frete', // Decimal, com duas casas decimais separadas por ponto (p.e., 
 1234.56), maior que 0.00 e menor ou igual a 9999999.00;
-	$params['itemId'] =  'ID ou SKU do seu produto,
+	$params['itemId'] =  'ID ou SKU do seu produto',
         $params['itemDescription'] =  'Descrição do produto',
         $params['itemAmount'] =  'Preço do produto', //Decimal, com duas casas decimais separadas por ponto (p.e., 
 1234.56), maior que 0.00 e menor ou igual a 9999999.00;
