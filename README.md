@@ -199,10 +199,17 @@ $transaction = $pagSeguroReturn['transaction'];
 ```
 Observe que a variável `notificationCode` é passada para o método `paymentOrderConsult`. Com isso, o indice `transaction` irá retornar os dados da compra de acordo com o PagSeguro, se foir paga, cancelada e etc. Abaixo uma tabela com os códigos e o seu significado
 
-1	Aguardando pagamento: o comprador iniciou a transação, mas até o momento o PagSeguro não recebeu nenhuma informação sobre o pagamento.
-2	Em análise: o comprador optou por pagar com um cartão de crédito e o PagSeguro está analisando o risco da transação.
-3	Paga: a transação foi paga pelo comprador e o PagSeguro já recebeu uma confirmação da instituição financeira responsável pelo processamento.
-4	Disponível: a transação foi paga e chegou ao final de seu prazo de liberação sem ter sido retornada e sem que haja nenhuma disputa aberta.
-5	Em disputa: o comprador, dentro do prazo de liberação da transação, abriu uma disputa.
-6	Devolvida: o valor da transação foi devolvido para o comprador.
-7	Cancelada: a transação foi cancelada sem ter sido finalizada.
+1 - Aguardando pagamento: o comprador iniciou a transação, mas até o momento o PagSeguro não recebeu nenhuma informação sobre o pagamento.
+
+2 -Em análise: o comprador optou por pagar com um cartão de crédito e o PagSeguro está analisando o risco da transação.
+
+3 - Paga: a transação foi paga pelo comprador e o PagSeguro já recebeu uma confirmação da instituição financeira
+responsável pelo processamento.
+
+4 - Disponível: a transação foi paga e chegou ao final de seu prazo de liberação sem ter sido retornada e sem que haja nenhuma disputa aberta.
+
+5 - Em disputa: o comprador, dentro do prazo de liberação da transação, abriu uma disputa.
+
+6 - Devolvida: o valor da transação foi devolvido para o comprador.
+
+7 - Cancelada: a transação foi cancelada sem ter sido finalizada.
