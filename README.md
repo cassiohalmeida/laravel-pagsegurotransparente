@@ -41,7 +41,7 @@ Após o package ser baixado, você precisa adicionar o 'service provider'. Abra 
 Ainda no arquivo `app/config/app.php`, adicione um aliases para o package:
 
     'PagSeguro'     =>     'Cassioalmeida\Pagsegurotransparente\Facades\PagSeguro'
-    
+
 Por último, mas não menos importante, digite o comando abaixo para que o arquivo de configuração do package seja criado:
 
     php artisan config:publish cassioalmeida/pagsegurotransparente
@@ -194,7 +194,7 @@ $params = array(
         'itemDescription2' =>  'Descrição do produto',
         'itemAmount2' =>  'Preço do produto', //Decimal com duas casas decimais separadas por ponto (ex1234.56) maior que 0.00 e menor ou igual a 9999999.00;
         'itemQuantity2' =>  'Qty do produto', // Um número inteiro maior ou igual a 1 e menor ou igual a 999
-        
+
         'itemId3' =>  'ID ou SKU do seu produto',
         'itemDescription3' =>  'Descrição do produto',
         'itemAmount3' =>  'Preço do produto', //Decimal com duas casas decimais separadas por ponto (ex1234.56) maior que 0.00 e menor ou igual a 9999999.00;
@@ -207,11 +207,11 @@ Caso exista algum erro nas informações, a variável `$pagSeguroReturn` terá u
 Em caso de SUCESSO na requisição a variável `$pagSeguroReturn` terá um indice `transaction` com seus respectivos dados como `código de transação`, `paymentLink` (no caso de boleto) entre outros. Consulte a página 16 do manual para todos os dados retornados.
 
 ## SenderHash
-O método `PagSeguroDirectPayment.getSenderHash()` é responsável por retornar o seu código SenderHash, no caso, na view.
+O método `PagSeguroDirectPayment.getSenderHash()` é responsável por retornar o seu código SenderHash, no caso, na view. Esse Hash deve ser enviado para a chamada da API no indice `senderHash`
 
 ```
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script type="text/javascript" src="https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"></script>
+<script type="text/javascript" src="{{PagSeguro::getPagSeguroData()->getJavascriptURL()}}"></script>
 
 <script>
 	console.log(PagSeguroDirectPayment.getSenderHash());
