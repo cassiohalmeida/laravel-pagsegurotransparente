@@ -118,7 +118,7 @@ $params = array(
 	'shippingAddressCity' => 'Cidade do endereço de entrega',
 	'shippingAddressState' => 'Estado do endereço de entrega, exemplo : SP',
 	"shippingAddressCountry" => "BRA",
-	'senderHash' => 'Sender HASH', //Utilizar documentação para ver como conseguir;
+	'senderHash' => 'Sender HASH', // Verificar no tópico abaixo
 	'currency' => 'BRL',
 	'shippingType'  =>  3, //Tipo de frete 1 – PAC, 2 – SEDEX, 3 - Desconhecido
 	'shippingCost'  =>  'Valor do frete', // Decimal, com duas casas decimais separadas por ponto (ex 1234.56) maior que 0.00 e menor ou igual a 9999999.00;
@@ -145,7 +145,7 @@ $params = array(
         'senderAreaCode'    =>  'DDD do telefone do cliente',
         'senderPhone'   =>  'Telefone do Cliente',
         'senderEmail'   =>  'email do cliente',
-        'senderHash'    =>  'sender hash', // Para mais detalhes de como obter, consulte o arquivo de integração do UOL
+        'senderHash'    =>  'sender hash', // Verificar no tópico abaixo
         'shippingAddressPostalCode' => 'CEP do endereço de entrega',
         'shippingAddressStreet' => 'Rua do endereço de entrega',
         'shippingAddressNumber' => 'Número do endereço de entrega',
@@ -205,6 +205,19 @@ $params = array(
 
 Caso exista algum erro nas informações, a variável `$pagSeguroReturn` terá um indice `errors`. Verifique seu retorno para descobrir o que houve de errado.
 Em caso de SUCESSO na requisição a variável `$pagSeguroReturn` terá um indice `transaction` com seus respectivos dados como `código de transação`, `paymentLink` (no caso de boleto) entre outros. Consulte a página 16 do manual para todos os dados retornados.
+
+## SenderHash
+O método `PagSeguroDirectPayment.getSenderHash()` é responsável por retornar o seu código SenderHash, no caso, na view.
+
+```
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"></script>
+
+<script>
+	console.log(PagSeguroDirectPayment.getSenderHash());
+</script>
+```
+
 
 ## RECEBENDO UMA NOTIFICAÇÃO SOBRE ALTERAÇÃO EM TRANSAÇÕES
 
