@@ -27,7 +27,7 @@ Você não precisa se preocupar em salvar os links para os arquivos de Produçã
 Adicione o repositório no seu arquivo `composer.json`.
 
 	"require-dev": {
-		"cassioalmeida/pagsegurotransparente": "dev-master"
+		"cassioalmeida/pagsegurotransparente" : "1.0.*@dev"
 	}
 
 Em seguida, atualize com o comando abaixo:

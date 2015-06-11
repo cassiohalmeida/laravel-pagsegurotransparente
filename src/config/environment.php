@@ -2,18 +2,17 @@
 
 return array(
 
-
     /*
-	|--------------------------------------------------------------------------
-	| Sandbox
-	|--------------------------------------------------------------------------
-	|
-	| Quando sua aplicação está em modo Sandbox os valores das transações não são reais.
+    |--------------------------------------------------------------------------
+    | Sandbox
+    |--------------------------------------------------------------------------
+    |
+    | Quando sua aplicação está em modo Sandbox os valores das transações não são reais.
     | Permitindo que você teste de forma mais fácil para ter certeza de que tudo está
-	| funcionando para quando estiver em produção.
+    | funcionando para quando estiver em produção.
     | Valores: TRUE para Sandbox | FALSE para Produção.
-	|
-	*/
+    |
+    */
 
     'sandbox'   =>  true,
 
