@@ -1,8 +1,11 @@
-<?php namespace Cassioalmeida\Pagsegurotransparente;
+<?php
+
+namespace Cassioalmeida\Pagsegurotransparente;
 
 use Illuminate\Support\ServiceProvider;
 
-class PagsegurotransparenteServiceProvider extends ServiceProvider {
+class PagsegurotransparenteServiceProvider extends ServiceProvider
+{
 
 	/**
 	 * Indicates if loading of the provider is deferred.
@@ -46,5 +49,4 @@ class PagsegurotransparenteServiceProvider extends ServiceProvider {
 	{
 		return array('pagsegurotransparente');
 	}
-
 }
