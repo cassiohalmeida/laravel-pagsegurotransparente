@@ -1,21 +1,27 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: cassio
- * Date: 13/11/14
- * Time: 11:33
- */
 
 namespace Cassioalmeida\Pagsegurotransparente;
 
 use DOMDocument;
 use Exception;
 
-class XmlParser {
+class XmlParser
+{
 
+    /**
+     * DOM
+     *
+     * @var DOMDocument
+     */
     private $dom;
 
-    public function __construct($xml) {
+    /**
+     * Constructor
+     * @param $xml
+     * @throws Exception
+     */
+    public function __construct($xml)
+    {
         $xml = mb_convert_encoding($xml, "UTF-8", "UTF-8,ISO-8859-1");
         $parser = xml_parser_create();
         if (!xml_parse($parser, $xml)) {
@@ -26,7 +32,16 @@ class XmlParser {
         }
     }
 
-    public function getResult($node = null) {
+    /**
+     * Get Result
+     *
+     *
+     * @param null $node
+     * @return null|string
+     * @throws Exception
+     */
+    public function getResult($node = null)
+    {
         $result = $this->toArray($this->dom);
         if ($node) {
             if (isset($result[$node])) {
@@ -39,12 +54,16 @@ class XmlParser {
         }
     }
 
-    private function toArray($node) {
-
-
+    /**
+     * To array convert
+     *
+     * @param $node
+     * @return null|string
+     */
+    private function toArray($node)
+    {
         $occurrence = array();
         $result = null;
-        /** @var $node DOMNode */
         if ($node->hasChildNodes()) {
             foreach ($node->childNodes as $child) {
                 if (!isset($occurrence[$child->nodeName])) {
@@ -90,13 +109,10 @@ class XmlParser {
                     }
                 }
             }
-
-            // One error array fix
             if (isset($result['errors']) && isset($result['errors']['error']['code'])) {
                 $firstError = $result['errors']['error'];
                 $result['errors']['error'] = Array(0 => $firstError);
             }
-
             return $result;
         } else {
             return null;
