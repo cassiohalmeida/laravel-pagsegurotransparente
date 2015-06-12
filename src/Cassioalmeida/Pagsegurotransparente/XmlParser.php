@@ -28,6 +28,7 @@ class XmlParser
             throw new Exception("XML parsing error: (" . xml_get_error_code($parser) .") " . xml_error_string(xml_get_error_code($parser)));
         } else {
             $this->dom = new DOMDocument();
+            $xml = utf8_decode($xml);
             $this->dom->loadXml($xml);
         }
     }
