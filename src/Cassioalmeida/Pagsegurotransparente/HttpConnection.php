@@ -124,7 +124,7 @@ class HttpConnection
 
         $options = array(
             CURLOPT_HTTPHEADER => array(
-                "Content-Type: application/x-www-form-urlencoded; charset=" . $charset,
+                "Content-Type: application/x-www-form-urlencoded; charset=ISO-8859-1",
                 $contentLength
             ),
             CURLOPT_URL => $url,
