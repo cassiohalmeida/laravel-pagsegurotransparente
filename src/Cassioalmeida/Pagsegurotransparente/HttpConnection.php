@@ -76,7 +76,7 @@ class HttpConnection
      * @return bool
      * @throws Exception
      */
-    public function post($url, array $data = null, $timeout = null, $charset = null) {
+    public function post($url, array $data = null, $timeout = null, $charset = 'ISO-8859-1') {
         return $this->curlConnection('POST', $url, $data, $timeout, $charset);
     }
 
@@ -90,7 +90,7 @@ class HttpConnection
      * @return bool
      * @throws Exception
      */
-    public function get($url, array $data = null, $timeout = null, $charset = null) {
+    public function get($url, array $data = null, $timeout = null, $charset = 'ISO-8859-1') {
         return $this->curlConnection('GET', $url, $data, $timeout, $charset);
     }
 
@@ -124,7 +124,7 @@ class HttpConnection
 
         $options = array(
             CURLOPT_HTTPHEADER => array(
-                "Content-Type: application/x-www-form-urlencoded; charset=ISO-8859-1",
+                "Content-Type: application/x-www-form-urlencoded; charset=" . $charset,
                 $contentLength
             ),
             CURLOPT_URL => $url,
